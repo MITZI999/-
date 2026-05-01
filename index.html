@@ -3,29 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMPIRE BUG BOT | ULTRA VIP</title>
+    <title>EMPIRE BUG BOT | VIP ACCESS</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <style>
         :root {
-            --p: #bc13fe; /* Mitzii's Signature Purple */
-            --b: #000000;
-            --g: rgba(188, 19, 254, 0.15);
+            --purple: #bc13fe;
+            --dark: #050505;
+            --glass: rgba(188, 19, 254, 0.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
         body {
-            background-color: var(--b);
+            background-color: var(--dark);
             color: white;
             font-family: 'Rajdhani', sans-serif;
             overflow-x: hidden;
         }
 
-        /* --- 3D PARTICLE BACKGROUND --- */
         #particles-js {
             position: fixed;
             inset: 0;
@@ -33,7 +32,7 @@
             background: radial-gradient(circle at center, #100020 0%, #000 100%);
         }
 
-        /* --- 3D GLOBE LOADING SCREEN --- */
+        /* --- 3D GLOBE LOADING SCREEN (EMPIRE SPECIAL) --- */
         #loader {
             position: fixed;
             inset: 0;
@@ -46,281 +45,292 @@
             transition: 1s ease;
         }
         .globe-3d {
-            width: 150px; height: 150px;
+            width: 100px; height: 100px;
             border-radius: 50%;
             background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Earth_orient_flat.jpg/640px-Earth_orient_flat.jpg');
             background-size: cover;
-            box-shadow: inset 0 0 50px var(--p), 0 0 60px var(--p);
-            animation: rotateWorld 6s linear infinite;
+            box-shadow: inset 0 0 30px var(--purple), 0 0 40px var(--purple);
+            animation: rotateGlobe 5s linear infinite;
         }
-        @keyframes rotateWorld { 
+        @keyframes rotateGlobe { 
             from { background-position: 0 0; } 
-            to { background-position: 300px 0; } 
+            to { background-position: 200px 0; } 
+        }
+        .load-text {
+            margin-top: 25px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            color: var(--purple);
+            letter-spacing: 5px;
+            text-shadow: 0 0 10px var(--purple);
         }
 
-        /* --- GLOBAL CLOCK SYSTEM --- */
-        .time-header {
-            background: rgba(0,0,0,0.85);
-            padding: 15px;
+        /* --- CLOCKS --- */
+        .clocks {
+            background: rgba(0,0,0,0.8);
+            padding: 10px;
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.8rem;
-            border-bottom: 1px solid #1a1a1a;
+            font-size: 0.75rem;
+            border-bottom: 1px solid #111;
             display: flex;
             justify-content: center;
-            gap: 25px;
+            gap: 20px;
             flex-wrap: wrap;
-            letter-spacing: 2px;
         }
-        .time-header span { color: var(--p); font-weight: bold; }
+        .clocks span { color: var(--purple); font-weight: bold; }
 
-        /* --- MAIN HERO SECTION --- */
-        .hero {
-            padding: 80px 20px;
+        /* --- CONTENT WRAPPER --- */
+        .wrapper {
+            padding: 50px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
             text-align: center;
-            perspective: 1000px;
         }
 
-        .main-avatar {
-            width: 180px; height: 180px;
-            border-radius: 40px;
-            border: 3px solid var(--p);
-            box-shadow: 0 0 50px var(--p);
-            margin-bottom: 30px;
-            animation: floating 4s ease-in-out infinite;
-            object-fit: cover;
+        /* --- LOGO (RESIZED TO BE SMALLER & CLEANER) --- */
+        .empire-logo {
+            width: 120px; /* Reduced Size */
+            height: 120px;
+            border-radius: 25px;
+            border: 2px solid var(--purple);
+            box-shadow: 0 0 30px rgba(188, 19, 254, 0.4);
+            margin-bottom: 25px;
+            animation: float 4s ease-in-out infinite;
         }
-        @keyframes floating {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(3deg); }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            letter-spacing: 10px;
-            text-transform: uppercase;
-            text-shadow: 0 0 25px var(--p);
-            margin-bottom: 10px;
+            font-size: 2rem; /* Balanced Size */
+            letter-spacing: 6px;
+            text-shadow: 0 0 15px var(--purple);
+            margin-bottom: 8px;
         }
 
-        .owner-tag {
-            font-size: 1.5rem;
-            color: #888;
-            margin-bottom: 60px;
-            letter-spacing: 5px;
+        .friend-id {
+            font-size: 1.3rem;
+            color: #aaa;
+            margin-bottom: 45px;
+            letter-spacing: 3px;
         }
 
-        /* --- INTERACTIVE BUTTONS --- */
-        .btn-container {
+        /* --- BUTTONS (RESIZED TO BE PROFESSIONAL) --- */
+        .btn-group {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
-            gap: 30px;
-            margin-bottom: 80px;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
         }
-        .cyber-btn {
-            padding: 22px 55px;
+        .btn {
+            padding: 14px 30px; /* Reduced Padding */
             font-family: 'Orbitron', sans-serif;
-            font-weight: 900;
-            font-size: 1.1rem;
+            font-size: 0.9rem; /* Professional Size */
             color: white;
             text-decoration: none;
-            border: 2px solid var(--p);
-            border-radius: 15px;
-            background: var(--g);
+            border: 1.5px solid var(--purple);
+            border-radius: 10px;
+            background: var(--glass);
             display: flex;
             align-items: center;
-            gap: 15px;
-            transition: 0.4s;
-            position: relative;
-            overflow: hidden;
+            gap: 10px;
+            transition: 0.3s ease;
         }
-        .cyber-btn::before {
-            content: ""; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
-        }
-        .cyber-btn:hover::before { left: 100%; }
-        .cyber-btn:hover {
-            transform: scale(1.1) translateY(-10px);
-            background: var(--p);
-            box-shadow: 0 0 60px var(--p);
+        .btn:hover {
+            background: var(--purple);
+            box-shadow: 0 0 30px var(--purple);
+            transform: translateY(-5px);
         }
 
-        /* --- LARGE INFO CARDS --- */
-        .info-grid {
+        /* --- INFO CARDS --- */
+        .card-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            max-width: 1100px;
-            margin: 0 auto 80px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
         }
-        .info-card {
+        .card {
             background: rgba(10, 10, 10, 0.9);
             border: 1px solid #1a1a1a;
-            padding: 45px;
-            border-radius: 25px;
+            padding: 30px;
+            border-radius: 20px;
             text-align: left;
-            transition: 0.4s;
-            position: relative;
+            transition: 0.3s;
         }
-        .info-card:hover {
-            border-color: var(--p);
-            box-shadow: 0 10px 40px rgba(188, 19, 254, 0.1);
-            transform: translateY(-10px);
-        }
-        .info-card i { color: var(--p); font-size: 2.5rem; margin-bottom: 20px; }
-        .card-label { font-size: 0.7rem; color: #444; letter-spacing: 3px; font-weight: bold; }
+        .card:hover { border-color: var(--purple); transform: translateY(-5px); }
+        .card i { color: var(--purple); font-size: 1.8rem; margin-bottom: 15px; }
 
         /* --- COMMUNITY BANNER --- */
         .chat-banner {
-            background: linear-gradient(135deg, #050505, #110020);
-            border: 1px solid #222;
-            padding: 30px;
-            border-radius: 30px;
+            background: #080808;
+            border: 1px solid #1a1a1a;
+            padding: 18px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
-            gap: 30px;
+            gap: 20px;
             text-decoration: none;
             color: white;
-            max-width: 600px;
-            margin: 0 auto 80px;
-            transition: 0.4s;
+            max-width: 450px;
+            margin: 0 auto 60px;
+            transition: 0.3s;
         }
-        .chat-banner:hover { border-color: var(--p); transform: scale(1.03); }
-        .chat-banner img { width: 80px; height: 80px; border-radius: 20px; border: 2px solid var(--p); }
+        .chat-banner:hover { border-color: var(--purple); }
+        .chat-banner img { width: 55px; height: 55px; border-radius: 12px; border: 1px solid var(--purple); }
 
-        /* --- NEON PLAYER --- */
-        .music-bar {
+        /* --- MITZII CONTACT (TINY & AT BOTTOM) --- */
+        .dev-tag {
+            margin-top: 40px;
+            font-size: 0.7rem;
+            color: #444;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .mitzii-btn {
+            padding: 6px 15px;
+            background: transparent;
+            border: 1px solid #222;
+            color: #555;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 0.6rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        .mitzii-btn:hover { border-color: var(--purple); color: var(--purple); }
+
+        /* --- MUSIC PLAYER --- */
+        .music-player {
             position: fixed;
-            bottom: 30px;
+            bottom: 25px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0,0,0,0.95);
-            border: 2px solid var(--p);
-            padding: 12px 40px;
-            border-radius: 100px;
+            background: #000;
+            border: 1px solid var(--purple);
+            padding: 8px 25px;
+            border-radius: 50px;
             display: flex;
             align-items: center;
-            gap: 25px;
+            gap: 15px;
+            box-shadow: 0 0 25px rgba(188, 19, 254, 0.2);
             z-index: 1000;
-            box-shadow: 0 0 40px var(--p);
         }
-        .play-btn {
-            background: var(--p);
+        .p-btn {
+            background: var(--purple);
             border: none;
-            width: 45px; height: 45px;
+            width: 35px; height: 35px;
             border-radius: 50%;
             color: white;
             cursor: pointer;
-            transition: 0.3s;
         }
 
-        footer { padding-bottom: 140px; opacity: 0.3; font-size: 0.7rem; letter-spacing: 5px; text-align: center; }
+        footer { padding-bottom: 100px; opacity: 0.2; font-size: 0.6rem; letter-spacing: 3px; margin-top: 20px;}
     </style>
 </head>
 <body>
 
     <div id="loader">
         <div class="globe-3d"></div>
-        <p style="margin-top: 30px; color: var(--p); letter-spacing: 10px; font-weight: 900;">MITZII SYSTEMS LOADED</p>
+        <p class="load-text">𓆰 𝐄ᴍᴘɪʀᴇ • 𓆪</p>
     </div>
 
     <div id="particles-js"></div>
 
-    <div class="time-header">
+    <div class="clocks">
         <div>SRI LANKA: <span id="sl">00:00:00</span></div>
         <div>INDIA: <span id="in">00:00:00</span></div>
-        <div>NEW YORK: <span id="ny">00:00:00</span></div>
+        <div>NY: <span id="ny">00:00:00</span></div>
         <div>LONDON: <span id="ln">00:00:00</span></div>
     </div>
 
-    <div class="hero">
-        <img src="https://i.ibb.co/ZRzCw1ZF/image.jpg" class="main-avatar" alt="Owner">
+    <div class="wrapper">
+        <img src="https://i.ibb.co/ZRzCw1ZF/image.jpg" class="empire-logo" alt="Empire Logo">
         
         <h1>EMPIRE BUG BOT VIP</h1>
-        <p class="owner-tag">𓆰 𝐄ᴍᴘɪʀᴇ • 𓆪</p>
+        <p class="friend-id">𓆰 𝐄ᴍᴘɪʀᴇ • 𓆪</p>
 
-        <div class="btn-container">
-            <a href="https://t.me/ebugtelebot" class="cyber-btn">
+        <div class="btn-group">
+            <a href="https://t.me/ebugtelebot" class="btn">
                 <i class="fab fa-telegram-plane"></i> START BOT
             </a>
-            <a href="https://t.me/empire9x" class="cyber-btn">
-                <i class="fas fa-crown"></i> EMPIRE 9X
+            <a href="https://t.me/empire9x" class="btn">
+                <i class="fas fa-crown"></i> OWNER ACCESS
             </a>
         </div>
 
-        <div class="info-grid">
-            <div class="info-card">
-                <div class="card-label">ROOT ACCESS</div>
-                <i class="fas fa-terminal"></i>
-                <h3>SYSTEM OWNER</h3>
-                <p style="margin-top: 15px; font-size: 1.2rem; color: var(--p); font-weight: bold;">EMPIRE 9X</p>
-                <p style="font-size: 0.8rem; color: #555; margin-top: 5px;">Managing global bug bot operations and premium network security.</p>
+        <div class="card-container">
+            <div class="card">
+                <i class="fas fa-shield-virus"></i>
+                <h4>VIP SECURITY</h4>
+                <p style="font-size: 0.8rem; color: #666; margin-top: 8px;">High-level encryption and optimized bug payloads for all members.</p>
             </div>
-            <div class="info-card">
-                <div class="card-label">CORE DEVELOPER</div>
-                <i class="fas fa-code"></i>
-                <h3>DEV MITZII</h3>
-                <p style="margin-top: 15px; font-size: 1.2rem; color: var(--p); font-weight: bold;">MITZII CREATIONS</p>
-                <a href="https://t.me/CyberMitzii" style="color: #444; font-size: 0.8rem; text-decoration: none;">View Project Catalog →</a>
+            <div class="card">
+                <i class="fas fa-bolt"></i>
+                <h4>ULTRA SPEED</h4>
+                <p style="font-size: 0.8rem; color: #666; margin-top: 8px;">Servers optimized for zero latency and maximum performance.</p>
             </div>
         </div>
 
         <a href="https://t.me/empire_chanel_9x" class="chat-banner">
-            <img src="https://i.ibb.co/pvgzZrSc/image.jpg" alt="Empire Group">
+            <img src="https://i.ibb.co/pvgzZrSc/image.jpg" alt="Chat">
             <div style="text-align: left;">
-                <p style="font-size: 1.3rem; font-weight: 900;">EMPIRE CHAT HOUSE</p>
-                <p style="font-size: 0.8rem; color: var(--p);">THE MOST POWERFUL COMMUNITY</p>
+                <p style="font-weight: bold; font-size: 0.9rem;">EMPIRE CHAT HOUSE</p>
+                <p style="font-size: 0.7rem; color: var(--purple);">JOIN OUR ELITE CIRCLE</p>
             </div>
-            <i class="fas fa-arrow-right" style="margin-left: auto; font-size: 1.5rem; opacity: 0.1;"></i>
+            <i class="fas fa-arrow-right" style="margin-left: auto; opacity: 0.2;"></i>
         </a>
 
-        <footer>&copy; 2026 EMPIRE TERMINAL | ENCRYPTED BY MITZII</footer>
+        <div class="dev-tag">
+            <span>System architecture designed for Empire 9X</span>
+            <a href="https://t.me/CyberMitzii" class="mitzii-btn">CONTACT DEVELOPER: MITZII</a>
+        </div>
+
+        <footer>© 2026 EMPIRE TERMINAL | ENCRYPTED BY MITZII</footer>
     </div>
 
-    <div class="music-bar">
-        <div style="text-align: left;">
-            <p style="font-size: 0.75rem; font-weight: bold; color: var(--p);">EMPIRE PHONK RADIO</p>
-            <p style="font-size: 0.6rem; color: #444;">HI-RES STREAMING</p>
-        </div>
-        <audio id="bg-music" loop>
+    <div class="music-player">
+        <span style="font-size: 0.6rem; font-weight: bold; color: var(--purple);">EMPIRE PHONK</span>
+        <audio id="audio" loop>
             <source src="https://files.catbox.moe/6q6f4s.mp3" type="audio/mpeg">
         </audio>
-        <button class="play-btn" onclick="togglePlayer()" id="pb">
+        <button class="p-btn" onclick="togglePlay()" id="playBtn">
             <i class="fas fa-play"></i>
         </button>
     </div>
 
     <script>
-        // Particles.js Enhanced Config
+        // Particles Background
         particlesJS("particles-js", {
             "particles": {
-                "number": { "value": 120 },
+                "number": { "value": 80 },
                 "color": { "value": "#bc13fe" },
                 "shape": { "type": "circle" },
-                "opacity": { "value": 0.4 },
+                "opacity": { "value": 0.3 },
                 "size": { "value": 2 },
-                "line_linked": { "enable": true, "distance": 150, "color": "#bc13fe", "opacity": 0.15, "width": 1 },
+                "line_linked": { "enable": true, "distance": 150, "color": "#bc13fe", "opacity": 0.1, "width": 1 },
                 "move": { "enable": true, "speed": 1.5 }
-            },
-            "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } } }
+            }
         });
 
-        // Global Time Engine
-        function runClocks() {
+        // Time Engine
+        function runTime() {
             const f = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
             document.getElementById('sl').innerText = new Date().toLocaleTimeString('en-US', { ...f, timeZone: 'Asia/Colombo' });
             document.getElementById('in').innerText = new Date().toLocaleTimeString('en-US', { ...f, timeZone: 'Asia/Kolkata' });
             document.getElementById('ny').innerText = new Date().toLocaleTimeString('en-US', { ...f, timeZone: 'America/New_York' });
             document.getElementById('ln').innerText = new Date().toLocaleTimeString('en-US', { ...f, timeZone: 'Europe/London' });
         }
-        setInterval(runClocks, 1000);
+        setInterval(runTime, 1000);
 
-        // Music Station Toggle
-        const a = document.getElementById('bg-music');
-        const b = document.getElementById('pb');
-        function togglePlayer() {
+        // Audio
+        const a = document.getElementById('audio');
+        const b = document.getElementById('playBtn');
+        function togglePlay() {
             if (a.paused) { a.play(); b.innerHTML = '<i class="fas fa-pause"></i>'; }
             else { a.pause(); b.innerHTML = '<i class="fas fa-play"></i>'; }
         }
