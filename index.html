@@ -1,251 +1,296 @@
+import os
+
+# Define the HTML content with 3D effects, animations, and loading screen
+html_content = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empire Bug Bot VIP | Official</title>
+    <title>EMPIRE BUG BOT VIP | 3D EXPERIENCE</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@300;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
     <style>
         :root {
-            --main-color: #8a2be2;
-            --bg-color: #050505;
-            --text-color: #ffffff;
+            --primary: #a020f0;
+            --secondary: #120024;
+            --glow: #d67dff;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: #000;
+            color: #fff;
             font-family: 'Rajdhani', sans-serif;
             overflow-x: hidden;
-            text-align: center;
         }
 
-        /* Moving Star Background */
-        .stars-bg {
+        /* --- LOADING SCREEN --- */
+        #loader {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .load-box {
+            width: 100px;
+            height: 100px;
+            border: 3px solid var(--primary);
+            border-top: 3px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* --- BACKGROUND ANIMATION --- */
+        #bg-canvas {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/stardust.png');
             z-index: -1;
-            opacity: 0.5;
+            background: radial-gradient(circle at center, #1a0033 0%, #000 100%);
         }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 60px 20px;
+        /* --- CONTAINER --- */
+        .main-wrapper {
+            padding: 50px 20px;
+            perspective: 1000px; /* For 3D Effect */
         }
 
-        /* Bot Profile Image */
-        .profile-img {
-            width: 160px;
-            height: 160px;
+        /* --- 3D FLOATING LOGO --- */
+        .logo-box {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 30px;
+            transform-style: preserve-3d;
+            animation: float 4s ease-in-out infinite;
+        }
+        .logo-box img {
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            border: 4px solid var(--main-color);
-            box-shadow: 0 0 25px var(--main-color);
-            margin-bottom: 25px;
-            transition: 0.5s;
+            border: 5px solid var(--primary);
+            box-shadow: 0 0 40px var(--primary);
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotateY(0deg); }
+            50% { transform: translateY(-20px) rotateY(15deg); }
         }
 
-        .profile-img:hover {
-            transform: rotate(360deg) scale(1.1);
-        }
-
+        /* --- TEXT ANIMATION --- */
         h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            letter-spacing: 4px;
-            color: var(--main-color);
-            text-shadow: 0 0 15px var(--main-color);
-        }
-
-        .sub-text {
-            font-size: 1.2rem;
-            color: #888;
-            margin-bottom: 30px;
+            font-size: 3rem;
             text-transform: uppercase;
+            letter-spacing: 5px;
+            color: #fff;
+            text-shadow: 0 0 20px var(--primary);
+            margin-bottom: 10px;
+            animation: glowText 2s infinite alternate;
+        }
+        @keyframes glowText {
+            from { opacity: 0.8; transform: scale(1); }
+            to { opacity: 1; transform: scale(1.02); }
         }
 
-        /* Buttons */
-        .btn-wrapper {
+        /* --- BUTTONS --- */
+        .btn-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 50px;
+            gap: 20px;
+            margin-top: 40px;
         }
-
-        .action-btn {
-            padding: 12px 30px;
-            border: 2px solid var(--main-color);
-            border-radius: 50px;
-            color: white;
+        .glass-btn {
+            background: rgba(138, 32, 240, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--primary);
+            padding: 15px 35px;
+            border-radius: 12px;
+            color: #fff;
             text-decoration: none;
             font-weight: bold;
-            text-transform: uppercase;
+            font-size: 1.1rem;
             transition: 0.4s;
-            background: rgba(138, 43, 226, 0.1);
             display: flex;
             align-items: center;
             gap: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        .glass-btn:hover {
+            background: var(--primary);
+            box-shadow: 0 0 30px var(--primary);
+            transform: translateZ(20px) scale(1.1);
         }
 
-        .action-btn:hover {
-            background: var(--main-color);
-            box-shadow: 0 0 25px var(--main-color);
-            transform: translateY(-5px);
-        }
-
-        /* Info Cards */
-        .info-grid {
+        /* --- INFO CARDS (3D) --- */
+        .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 60px;
         }
-
-        .info-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(138, 43, 226, 0.2);
-            padding: 25px;
+        .card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(138, 32, 240, 0.3);
+            padding: 30px;
             border-radius: 20px;
-            transition: 0.3s;
+            transition: 0.5s;
+            transform-style: preserve-3d;
+        }
+        .card:hover {
+            background: rgba(138, 32, 240, 0.08);
+            transform: translateY(-10px) rotateX(10deg);
+            border-color: var(--primary);
         }
 
-        .info-card:hover {
-            border-color: var(--main-color);
-            background: rgba(138, 43, 226, 0.05);
-        }
-
-        .info-card i {
-            font-size: 2rem;
-            color: var(--main-color);
-            margin-bottom: 15px;
-        }
-
-        /* Fixed Phonk Player */
-        .music-bar {
+        /* --- MUSIC PLAYER --- */
+        .music-dock {
             position: fixed;
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.9);
-            padding: 12px 30px;
+            width: 320px;
+            background: rgba(0,0,0,0.8);
+            border: 1px solid var(--primary);
+            padding: 12px 20px;
             border-radius: 50px;
-            border: 2px solid var(--main-color);
             display: flex;
             align-items: center;
-            gap: 15px;
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
-            z-index: 999;
+            justify-content: space-between;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 0 30px rgba(160, 32, 240, 0.5);
+            z-index: 1000;
         }
 
-        .fa-compact-disc {
-            color: var(--main-color);
-            animation: spin 3s linear infinite;
-        }
-
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-
-        .play-btn {
-            background: var(--main-color);
-            border: none;
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
+        .visualizer {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            gap: 3px;
+        }
+        .bar {
+            width: 3px;
+            height: 15px;
+            background: var(--primary);
+            animation: dance 1s ease-in-out infinite;
+        }
+        @keyframes dance {
+            0%, 100% { height: 5px; }
+            50% { height: 20px; }
         }
 
         footer {
-            margin-top: 80px;
-            opacity: 0.4;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
+            margin-top: 100px;
+            padding-bottom: 120px;
+            opacity: 0.5;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
 
-    <div class="stars-bg"></div>
+    <div id="loader">
+        <div class="load-box"></div>
+        <h2 style="margin-top: 20px; font-family: 'Orbitron'; letter-spacing: 5px;">INITIALIZING...</h2>
+    </div>
 
-    <div class="music-bar">
-        <i class="fas fa-compact-disc"></i>
-        <span style="font-size: 0.8rem; font-weight: bold;">PHONK RADIO ON</span>
-        <audio id="mainAudio" loop>
+    <div id="bg-canvas"></div>
+
+    <div class="main-wrapper">
+        <div class="container" id="content">
+            
+            <div class="logo-box">
+                <img src="https://i.ibb.co/ZRzCw1ZF/image.jpg" alt="Empire Logo">
+            </div>
+
+            <h1>EMPIRE BUG BOT</h1>
+            <p style="color: #bbb; font-size: 1.2rem; letter-spacing: 2px;">VIRTUAL INTELLIGENCE INTERFACE</p>
+
+            <div class="btn-container">
+                <a href="https://t.me/ebugtelebot" class="glass-btn"><i class="fab fa-telegram-plane"></i> START BOT</a>
+                <a href="https://t.me/empire_chanel_9x" class="glass-btn"><i class="fas fa-users"></i> COMMUNITY</a>
+                <a href="https://t.me/empire9x" class="glass-btn" style="background: var(--primary);"><i class="fas fa-user-shield"></i> OWNER</a>
+            </div>
+
+            <div class="card-grid">
+                <div class="card">
+                    <i class="fas fa-code" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;"></i>
+                    <h3 style="font-family: 'Orbitron';">DEVELOPER</h3>
+                    <p style="color: var(--primary); font-weight: bold; font-size: 1.3rem;">MITZII CYBER</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-crown" style="font-size: 2.5rem; color: gold; margin-bottom: 15px;"></i>
+                    <h3 style="font-family: 'Orbitron';">MAIN OWNER</h3>
+                    <p style="font-size: 1.3rem;">EMPIRE 9X</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-microchip" style="font-size: 2.5rem; color: #00ff00; margin-bottom: 15px;"></i>
+                    <h3 style="font-family: 'Orbitron';">UPTIME</h3>
+                    <p>SYSTEM ONLINE 24/7</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 60px;">
+                <p style="margin-bottom: 20px; opacity: 0.7;">JOIN OUR NETWORK</p>
+                <img src="https://i.ibb.co/pvgzZrSc/image.jpg" style="width: 100%; max-width: 500px; border-radius: 20px; border: 1px solid var(--primary);">
+            </div>
+
+            <footer>
+                <p>&copy; 2026 EMPIRE BUG BOT | ARCHITECTED BY DEV MITZII</p>
+            </footer>
+        </div>
+    </div>
+
+    <div class="music-dock">
+        <div class="visualizer">
+            <div class="bar" style="animation-delay: 0.1s;"></div>
+            <div class="bar" style="animation-delay: 0.3s;"></div>
+            <div class="bar" style="animation-delay: 0.5s;"></div>
+            <div class="bar" style="animation-delay: 0.2s;"></div>
+        </div>
+        <span style="font-size: 0.8rem; font-weight: bold; letter-spacing: 1px;">PHONK MODE</span>
+        <audio id="phonk">
             <source src="https://files.catbox.moe/2s4o6x.mp3" type="audio/mpeg">
         </audio>
-        <button class="play-btn" onclick="toggleAudio()" id="ctrlIcon">
+        <button onclick="playMusic()" id="pBtn" style="background:var(--primary); border:none; color:white; width:40px; height:40px; border-radius:50%; cursor:pointer;">
             <i class="fas fa-play"></i>
         </button>
     </div>
 
-    <div class="container">
-        <img src="https://ibb.co/ZRzCw1ZF" alt="Empire Logo" class="profile-img">
-        <h1>EMPIRE BUG BOT VIP</h1>
-        <p class="sub-text">High-Speed Bug & Payload Service</p>
-
-        <div class="btn-wrapper">
-            <a href="https://t.me/ebugtelebot" class="action-btn"><i class="fab fa-telegram-plane"></i> Start Bot</a>
-            <a href="https://t.me/empire_chanel_9x" class="action-btn"><i class="fas fa-users"></i> Chat Group</a>
-            <a href="https://t.me/empire9x" class="action-btn"><i class="fas fa-user-shield"></i> Owner</a>
-        </div>
-
-        <div class="info-grid">
-            <div class="info-card">
-                <i class="fas fa-terminal"></i>
-                <h3>Developer</h3>
-                <p style="color: var(--main-color); font-weight: bold; font-size: 1.2rem;">DEV MITZII</p>
-            </div>
-            <div class="info-card">
-                <i class="fas fa-crown"></i>
-                <h3>Main Owner</h3>
-                <p style="font-size: 1.2rem;">EMPIRE 9X</p>
-            </div>
-            <div class="info-card">
-                <i class="fas fa-bolt"></i>
-                <h3>Uptime</h3>
-                <p>24/7 ONLINE SERVICE</p>
-            </div>
-        </div>
-
-        <div style="margin-top: 50px;">
-            <p style="margin-bottom: 15px; opacity: 0.6;">JOIN OUR COMMUNITY</p>
-            <a href="https://t.me/empire_chanel_9x">
-                <img src="https://ibb.co/pvgzZrSc" style="width: 100%; max-width: 450px; border-radius: 15px; border: 1px solid #333;">
-            </a>
-        </div>
-
-        <footer>
-            <p>DESIGNED BY DEV MITZII | © 2026 EMPIRE NETWORK</p>
-        </footer>
-    </div>
-
     <script>
-        var mySong = document.getElementById("mainAudio");
-        var myBtn = document.getElementById("ctrlIcon");
+        // Hide Loader
+        window.onload = function() {
+            setTimeout(() => {
+                document.getElementById('loader').style.display = 'none';
+                gsap.from("#content", {opacity: 0, y: 50, duration: 1.5});
+            }, 2000);
+        };
 
-        function toggleAudio() {
-            if (mySong.paused) {
-                mySong.play();
-                myBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        // Music Control
+        var song = document.getElementById("phonk");
+        var btn = document.getElementById("pBtn");
+        function playMusic() {
+            if (song.paused) {
+                song.play();
+                btn.innerHTML = '<i class="fas fa-pause"></i>';
             } else {
-                mySong.pause();
-                myBtn.innerHTML = '<i class="fas fa-play"></i>';
+                song.pause();
+                btn.innerHTML = '<i class="fas fa-play"></i>';
             }
         }
-
-        // Play alert for mobile
-        window.addEventListener('click', function() {
-            // Optional auto-start logic
-        }, { once: true });
     </script>
-
 </body>
 </html>
+"""
+
+# Save to an HTML file
+with open("empire_3d_web.html", "w") as f:
+    f.write(html_content)
