@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMPIRE BUG BOT | VIP ACCESS</title>
+    <title>EMPIRE BUG BOT | VIP TERMINAL</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
@@ -59,13 +59,13 @@
         .load-text {
             margin-top: 25px;
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: var(--purple);
             letter-spacing: 5px;
             text-shadow: 0 0 10px var(--purple);
         }
 
-        /* --- CLOCKS --- */
+        /* --- CLOCKS BAR --- */
         .clocks {
             background: rgba(0,0,0,0.8);
             padding: 10px;
@@ -87,9 +87,9 @@
             text-align: center;
         }
 
-        /* --- LOGO (RESIZED TO BE SMALLER & CLEANER) --- */
+        /* --- LOGO (PROFESSIONAL SIZE) --- */
         .empire-logo {
-            width: 120px; /* Reduced Size */
+            width: 120px;
             height: 120px;
             border-radius: 25px;
             border: 2px solid var(--purple);
@@ -104,7 +104,7 @@
 
         h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 2rem; /* Balanced Size */
+            font-size: 2rem;
             letter-spacing: 6px;
             text-shadow: 0 0 15px var(--purple);
             margin-bottom: 8px;
@@ -117,7 +117,7 @@
             letter-spacing: 3px;
         }
 
-        /* --- BUTTONS (RESIZED TO BE PROFESSIONAL) --- */
+        /* --- PRIMARY BUTTONS (EMPIRE'S SPECIAL) --- */
         .btn-group {
             display: flex;
             justify-content: center;
@@ -126,9 +126,9 @@
             margin-bottom: 60px;
         }
         .btn {
-            padding: 14px 30px; /* Reduced Padding */
+            padding: 14px 30px;
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem; /* Professional Size */
+            font-size: 0.9rem;
             color: white;
             text-decoration: none;
             border: 1.5px solid var(--purple);
@@ -181,28 +181,43 @@
         .chat-banner:hover { border-color: var(--purple); }
         .chat-banner img { width: 55px; height: 55px; border-radius: 12px; border: 1px solid var(--purple); }
 
-        /* --- MITZII CONTACT (TINY & AT BOTTOM) --- */
+        /* --- DEVELOPER SECTION (MITZII & EMPIRE SPECIAL) --- */
         .dev-tag {
-            margin-top: 40px;
-            font-size: 0.7rem;
-            color: #444;
+            margin-top: 50px;
+            font-size: 0.8rem;
+            color: #555;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            border-top: 1px solid #1a1a1a;
+            padding-top: 30px;
         }
-        .mitzii-btn {
-            padding: 6px 15px;
-            background: transparent;
+        .developed-by {
+            font-family: 'Share Tech Mono', monospace;
+            letter-spacing: 2px;
+        }
+        .developed-by span { color: var(--purple); font-weight: bold; }
+        
+        .mitzii-contact {
+            padding: 8px 18px;
+            background: rgba(255,255,255,0.02);
             border: 1px solid #222;
-            color: #555;
+            color: white;
             text-decoration: none;
             border-radius: 50px;
-            font-size: 0.6rem;
+            font-size: 0.7rem;
             letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             transition: 0.3s;
         }
-        .mitzii-btn:hover { border-color: var(--purple); color: var(--purple); }
+        .mitzii-contact:hover { 
+            border-color: var(--purple); 
+            background: var(--glass);
+            box-shadow: 0 0 15px rgba(188, 19, 254, 0.3);
+        }
 
         /* --- MUSIC PLAYER --- */
         .music-player {
@@ -229,7 +244,7 @@
             cursor: pointer;
         }
 
-        footer { padding-bottom: 100px; opacity: 0.2; font-size: 0.6rem; letter-spacing: 3px; margin-top: 20px;}
+        footer { padding-bottom: 110px; opacity: 0.2; font-size: 0.6rem; letter-spacing: 3px; margin-top: 15px;}
     </style>
 </head>
 <body>
@@ -242,10 +257,10 @@
     <div id="particles-js"></div>
 
     <div class="clocks">
-        <div>SRI LANKA: <span id="sl">00:00:00</span></div>
-        <div>INDIA: <span id="in">00:00:00</span></div>
+        <div>SL: <span id="sl">00:00:00</span></div>
+        <div>IN: <span id="in">00:00:00</span></div>
         <div>NY: <span id="ny">00:00:00</span></div>
-        <div>LONDON: <span id="ln">00:00:00</span></div>
+        <div>LN: <span id="ln">00:00:00</span></div>
     </div>
 
     <div class="wrapper">
@@ -267,27 +282,30 @@
             <div class="card">
                 <i class="fas fa-shield-virus"></i>
                 <h4>VIP SECURITY</h4>
-                <p style="font-size: 0.8rem; color: #666; margin-top: 8px;">High-level encryption and optimized bug payloads for all members.</p>
+                <p style="font-size: 0.8rem; color: #666; margin-top: 8px;">Premium encryption and bug-proof payloads enabled for all elite members.</p>
             </div>
             <div class="card">
                 <i class="fas fa-bolt"></i>
                 <h4>ULTRA SPEED</h4>
-                <p style="font-size: 0.8rem; color: #666; margin-top: 8px;">Servers optimized for zero latency and maximum performance.</p>
+                <p style="font-size: 0.8rem; color: #666; margin-top: 8px;">Servers optimized for zero latency and high-performance testing.</p>
             </div>
         </div>
 
         <a href="https://t.me/empire_chanel_9x" class="chat-banner">
-            <img src="https://i.ibb.co/pvgzZrSc/image.jpg" alt="Chat">
+            <img src="https://i.ibb.co/pvgzZrSc/image.jpg" alt="Chat House Logo">
             <div style="text-align: left;">
                 <p style="font-weight: bold; font-size: 0.9rem;">EMPIRE CHAT HOUSE</p>
-                <p style="font-size: 0.7rem; color: var(--purple);">JOIN OUR ELITE CIRCLE</p>
+                <p style="font-size: 0.7rem; color: var(--purple);">JOIN OUR PRIVATE NETWORK</p>
             </div>
             <i class="fas fa-arrow-right" style="margin-left: auto; opacity: 0.2;"></i>
         </a>
 
         <div class="dev-tag">
-            <span>System architecture designed for Empire 9X</span>
-            <a href="https://t.me/CyberMitzii" class="mitzii-btn">CONTACT DEVELOPER: MITZII</a>
+            <div class="developed-by">DEVELOPED BY: <span>MITZII</span> & <span>𓆰 𝐄ᴍᴘɪʀᴇ • 𓆪</span></div>
+            <p style="font-size: 0.65rem; color: #333;">System architecture designed for elite performance</p>
+            <a href="https://t.me/CyberMitzii" class="mitzii-contact">
+                <i class="fas fa-code-branch"></i> CONTACT DEVELOPER: MITZII
+            </a>
         </div>
 
         <footer>© 2026 EMPIRE TERMINAL | ENCRYPTED BY MITZII</footer>
@@ -318,29 +336,29 @@
         });
 
         // Time Engine
-        function runTime() {
+        function runClocks() {
             const f = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
             document.getElementById('sl').innerText = new Date().toLocaleTimeString('en-US', { ...f, timeZone: 'Asia/Colombo' });
             document.getElementById('in').innerText = new Date().toLocaleTimeString('en-US', { ...f, timeZone: 'Asia/Kolkata' });
             document.getElementById('ny').innerText = new Date().toLocaleTimeString('en-US', { ...f, timeZone: 'America/New_York' });
             document.getElementById('ln').innerText = new Date().toLocaleTimeString('en-US', { ...f, timeZone: 'Europe/London' });
         }
-        setInterval(runTime, 1000);
+        setInterval(runClocks, 1000);
 
-        // Audio
-        const a = document.getElementById('audio');
-        const b = document.getElementById('playBtn');
+        // Music
+        const audio = document.getElementById('audio');
+        const btn = document.getElementById('playBtn');
         function togglePlay() {
-            if (a.paused) { a.play(); b.innerHTML = '<i class="fas fa-pause"></i>'; }
-            else { a.pause(); b.innerHTML = '<i class="fas fa-play"></i>'; }
+            if (audio.paused) { audio.play(); btn.innerHTML = '<i class="fas fa-pause"></i>'; }
+            else { audio.pause(); btn.innerHTML = '<i class="fas fa-play"></i>'; }
         }
 
         // Loader Sequence
         window.onload = () => {
             setTimeout(() => {
-                const l = document.getElementById('loader');
-                l.style.opacity = '0';
-                setTimeout(() => l.style.display = 'none', 1000);
+                const loader = document.getElementById('loader');
+                loader.style.opacity = '0';
+                setTimeout(() => loader.style.display = 'none', 1000);
             }, 3000);
         };
     </script>
