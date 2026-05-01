@@ -3,309 +3,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMPIRE BUG BOT | 𓆰 𝐄ᴍᴘɪʀᴇ • 𓆪</title>
+    <title>EMPIRE BUG BOT | VIP INTERFACE</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
     <style>
         :root {
-            --empire-gold: #d4af37;
-            --mitzii-purple: #bc13fe;
-            --bg-black: #020202;
+            --purple: #bc13fe;
+            --dark: #000000;
+            --glass: rgba(188, 19, 254, 0.05);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: var(--bg-black);
+            background-color: var(--dark);
             color: white;
             font-family: 'Rajdhani', sans-serif;
             overflow-x: hidden;
             text-align: center;
         }
 
-        /* --- 3D MOVING BACKGROUND --- */
-        #canvas-container {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            background: radial-gradient(circle at center, #111 0%, #000 100%);
-        }
-
-        /* --- LUXURY LOADER --- */
+        /* --- 3D WORLD GLOBE LOADER --- */
         #loader {
             position: fixed;
             inset: 0;
             background: #000;
             z-index: 10000;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: 1s ease-in-out;
+            transition: 0.8s ease;
         }
-        .load-content {
-            border-left: 3px solid var(--empire-gold);
-            padding: 20px;
-            animation: pulse 1.5s infinite;
-        }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-        /* --- CLOCKS --- */
-        .world-clocks {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 10px;
+        .globe-container {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            position: relative;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Earth_orient_flat.jpg/640px-Earth_orient_flat.jpg');
+            background-size: cover;
+            box-shadow: inset 0 0 30px rgba(188, 19, 254, 0.8), 0 0 40px var(--purple);
+            animation: rotateGlobe 4s linear infinite;
+        }
+
+        @keyframes rotateGlobe {
+            from { background-position: 0 0; }
+            to { background-position: 200px 0; }
+        }
+
+        .loader-text {
+            margin-top: 25px;
+            font-family: 'Orbitron', sans-serif;
             font-size: 0.7rem;
-            letter-spacing: 2px;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            letter-spacing: 5px;
+            color: var(--purple);
+            text-shadow: 0 0 10px var(--purple);
+        }
+
+        /* --- BACKGROUND GRADIENT --- */
+        .bg-gradient {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at top right, #1a0030 0%, #000 100%);
+            z-index: -1;
+        }
+
+        /* --- WORLD CLOCKS --- */
+        .clocks-bar {
+            background: rgba(0,0,0,0.8);
+            padding: 12px;
+            font-size: 0.75rem;
+            border-bottom: 1px solid #1a1a1a;
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 25px;
+        }
+        .clocks-bar span { color: var(--purple); font-weight: bold; }
+
+        /* --- CONTENT WRAPPER --- */
+        .container {
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        /* --- HERO SECTION --- */
-        .main-container {
-            padding: 50px 20px;
-            perspective: 1200px;
+        /* --- FLOATING LOGO --- */
+        .logo-wrapper {
+            position: relative;
+            width: 125px;
+            height: 125px;
+            margin: 0 auto 25px;
+            animation: floatUI 3s ease-in-out infinite;
         }
-
-        .empire-logo {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            border: 3px solid var(--empire-gold);
-            box-shadow: 0 0 50px rgba(212, 175, 55, 0.3);
-            margin-bottom: 20px;
-            transform-style: preserve-3d;
+        .logo-wrapper img {
+            width: 100%;
+            height: 100%;
+            border-radius: 25px;
+            border: 2px solid var(--purple);
+            box-shadow: 0 0 35px var(--purple);
+        }
+        @keyframes floatUI {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
         }
 
         h1 {
-            font-family: 'Syncopate', sans-serif;
-            font-size: 1.5rem;
-            letter-spacing: 5px;
-            color: var(--empire-gold);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 6px;
             margin-bottom: 5px;
+            background: linear-gradient(to right, #fff, var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .owner-name {
+        .empire-id {
             font-size: 1.2rem;
-            letter-spacing: 3px;
+            color: #888;
             margin-bottom: 40px;
-            color: #fff;
-            text-shadow: 0 0 10px rgba(255,255,255,0.5);
         }
 
-        /* --- SPECIAL EMPIRE BUTTON --- */
-        .empire-btn {
-            display: inline-flex;
+        /* --- BUTTONS --- */
+        .btn-box {
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 15px;
-            padding: 18px 45px;
-            background: linear-gradient(45deg, #000, #1a1a1a);
-            border: 2px solid var(--empire-gold);
-            color: var(--empire-gold);
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            font-size: 1.1rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            transition: 0.4s;
+            gap: 20px;
             margin-bottom: 50px;
         }
-        .empire-btn:hover {
-            background: var(--empire-gold);
-            color: black;
-            box-shadow: 0 0 50px var(--empire-gold);
-            transform: scale(1.05) translateY(-5px);
+
+        .primary-btn {
+            padding: 16px 45px;
+            background: var(--purple);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 900;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 2px;
+            box-shadow: 0 0 20px var(--purple);
+            transition: 0.3s;
+            border: none;
+        }
+        .primary-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px var(--purple);
         }
 
-        /* --- MITZII DEVELOPER BUTTON --- */
-        .mitzii-tag {
-            position: relative;
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-        }
-        .mitzii-btn {
-            padding: 8px 20px;
-            background: rgba(188, 19, 254, 0.1);
-            border: 1px solid var(--mitzii-purple);
-            color: var(--mitzii-purple);
+        .dev-btn {
+            padding: 10px 25px;
+            background: var(--glass);
+            border: 1px solid var(--purple);
+            color: var(--purple);
             text-decoration: none;
-            font-size: 0.7rem;
             border-radius: 50px;
-            letter-spacing: 2px;
+            font-size: 0.8rem;
+            font-weight: bold;
             transition: 0.3s;
         }
-        .mitzii-btn:hover {
-            background: var(--mitzii-purple);
-            color: white;
-            box-shadow: 0 0 20px var(--mitzii-purple);
-        }
+        .dev-btn:hover { background: var(--purple); color: white; }
 
-        /* --- INFO GRID --- */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            max-width: 900px;
-            margin: 0 auto 50px;
-        }
-        .card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 15px;
-            transition: 0.4s;
-        }
-        .card:hover {
-            border-color: var(--empire-gold);
-            background: rgba(212, 175, 55, 0.05);
-        }
-
-        /* --- CHAT GROUP --- */
-        .chat-link {
+        /* --- CHAT SECTION --- */
+        .chat-card {
+            background: rgba(10, 10, 10, 0.8);
+            border: 1px solid #1a1a1a;
+            padding: 15px;
+            border-radius: 18px;
+            max-width: 400px;
+            margin: 0 auto 40px;
             display: flex;
             align-items: center;
-            background: #0a0a0a;
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid #222;
+            gap: 15px;
             text-decoration: none;
             color: white;
-            gap: 15px;
-            transition: 0.4s;
+            transition: 0.3s;
         }
-        .chat-link:hover { border-color: var(--empire-gold); transform: translateY(-5px); }
-        .chat-img { width: 50px; height: 50px; border-radius: 8px; border: 1px solid var(--empire-gold); }
+        .chat-card:hover { border-color: var(--purple); transform: translateY(-5px); }
+        .chat-card img { width: 50px; height: 50px; border-radius: 10px; border: 1px solid var(--purple); }
 
-        /* --- MUSIC --- */
-        .music-bar {
+        /* --- MUSIC PLAYER --- */
+        .player {
             position: fixed;
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0,0,0,0.9);
-            border: 1px solid var(--empire-gold);
+            background: #000;
+            border: 1px solid var(--purple);
             padding: 10px 25px;
-            border-radius: 50px;
+            border-radius: 100px;
             display: flex;
             align-items: center;
             gap: 20px;
-            z-index: 1000;
+            box-shadow: 0 0 25px rgba(188, 19, 254, 0.3);
         }
-        .play-btn {
-            background: var(--empire-gold);
+        .play-pause-btn {
+            background: var(--purple);
             border: none;
             width: 35px; height: 35px;
             border-radius: 50%;
+            color: white;
             cursor: pointer;
         }
 
-        footer { margin-top: 50px; padding-bottom: 120px; opacity: 0.3; font-size: 0.6rem; letter-spacing: 4px; }
+        footer { opacity: 0.2; font-size: 0.6rem; letter-spacing: 4px; padding-bottom: 120px; }
     </style>
 </head>
 <body>
 
-    <div id="loader"><div class="load-content">SYSTEM INITIALIZING</div></div>
-    <div id="canvas-container"></div>
-
-    <div class="world-clocks">
-        <div>SRI LANKA: <span id="sl-time">00:00</span></div>
-        <div>NEW YORK: <span id="ny-time">00:00</span></div>
-        <div>LONDON: <span id="uk-time">00:00</span></div>
+    <div id="loader">
+        <div class="globe-container"></div>
+        <div class="loader-text">INITIALIZING EMPIRE WORLD...</div>
     </div>
 
-    <div class="main-container">
-        <img src="https://i.ibb.co/ZRzCw1ZF/image.jpg" class="empire-logo" data-tilt>
+    <div class="bg-gradient"></div>
 
-        <h1>EMPIRE BUG BOT</h1>
-        <p class="owner-name">𓆰 𝐄ᴍᴘɪʀᴇ • 𓆪</p>
+    <div class="clocks-bar">
+        <div>SL: <span id="time-sl">00:00</span></div>
+        <div>NY: <span id="time-ny">00:00</span></div>
+        <div>LN: <span id="time-ln">00:00</span></div>
+    </div>
 
-        <a href="https://t.me/empire9x" class="empire-btn" data-tilt data-tilt-scale="1.1">
-            <i class="fas fa-crown"></i> CONTACT EMPIRE
-        </a>
-
-        <div class="grid">
-            <div class="card" data-tilt>
-                <i class="fas fa-microchip" style="color: var(--empire-gold); font-size: 2rem; margin-bottom: 15px;"></i>
-                <h3>HIGH SPEED</h3>
-                <p style="font-size: 0.8rem; opacity: 0.6; margin-top: 10px;">The fastest bug and payload service in the network.</p>
-            </div>
-            <div class="card" data-tilt>
-                <i class="fas fa-user-shield" style="color: var(--empire-gold); font-size: 2rem; margin-bottom: 15px;"></i>
-                <h3>PRIVATE ACCESS</h3>
-                <p style="font-size: 0.8rem; opacity: 0.6; margin-top: 10px;">Encrypted connection for all premium members.</p>
-            </div>
+    <div class="container">
+        <div class="logo-wrapper">
+            <img src="https://i.ibb.co/ZRzCw1ZF/image.jpg" alt="Empire Logo">
         </div>
 
-        <a href="https://t.me/empire_chanel_9x" class="chat-link" data-tilt>
-            <img src="https://i.ibb.co/pvgzZrSc/image.jpg" class="chat-img">
+        <h1>EMPIRE BUG BOT</h1>
+        <p class="empire-id">𓆰 𝐄ᴍᴘɪʀᴇ • 𓆪</p>
+
+        <div class="btn-box">
+            <a href="https://t.me/empire9x" class="primary-btn">CONTACT OWNER</a>
+            <a href="https://t.me/CyberMitzii" class="dev-btn">DEVELOPED BY MITZII</a>
+        </div>
+
+        <a href="https://t.me/empire_chanel_9x" class="chat-card">
+            <img src="https://i.ibb.co/pvgzZrSc/image.jpg" alt="Group">
             <div style="text-align: left;">
-                <p style="font-weight: bold; font-size: 0.9rem;">JOIN EMPIRE CHAT HOUSE</p>
-                <p style="font-size: 0.7rem; color: var(--empire-gold);">Official Community</p>
+                <p style="font-weight: bold; font-size: 0.9rem;">EMPIRE CHAT HOUSE</p>
+                <p style="font-size: 0.7rem; color: var(--purple);">Join the community</p>
             </div>
             <i class="fas fa-arrow-right" style="margin-left: auto; opacity: 0.3;"></i>
         </a>
 
-        <div class="mitzii-tag">
-            <a href="https://t.me/CyberMitzii" class="mitzii-btn">
-                <i class="fas fa-code"></i> DEVELOPED BY MITZII
-            </a>
-        </div>
-
-        <footer>
-            &copy; 2026 EMPIRE NETWORK | ALL RIGHTS RESERVED
-        </footer>
+        <footer>&copy; 2026 EMPIRE TERMINAL</footer>
     </div>
 
-    <div class="music-bar">
+    <div class="player">
         <div style="text-align: left;">
-            <p style="font-size: 0.7rem; font-weight: bold; color: var(--empire-gold);">EMPIRE PHONK RADIO</p>
+            <p style="font-size: 0.6rem; font-weight: bold; color: var(--purple);">SYSTEM PHONK</p>
         </div>
-        <audio id="audio" loop>
+        <audio id="bg-audio" loop>
             <source src="https://files.catbox.moe/6q6f4s.mp3" type="audio/mpeg">
         </audio>
-        <button class="play-btn" onclick="playMusic()" id="pBtn">
+        <button class="play-pause-btn" onclick="handleMusic()" id="mBtn">
             <i class="fas fa-play"></i>
         </button>
     </div>
 
     <script>
-        // 3D Tilt Init
-        VanillaTilt.init(document.querySelectorAll(".card, .empire-logo, .empire-btn, .chat-link"), {
-            max: 15,
-            speed: 400,
-            glare: true,
-            "max-glare": 0.3,
-        });
-
-        // Time Update
+        // World Clocks Update
         function updateTime() {
             const opt = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-            document.getElementById('sl-time').innerText = new Date().toLocaleTimeString('en-US', { ...opt, timeZone: 'Asia/Colombo' });
-            document.getElementById('ny-time').innerText = new Date().toLocaleTimeString('en-US', { ...opt, timeZone: 'America/New_York' });
-            document.getElementById('uk-time').innerText = new Date().toLocaleTimeString('en-US', { ...opt, timeZone: 'Europe/London' });
+            document.getElementById('time-sl').innerText = new Date().toLocaleTimeString('en-US', { ...opt, timeZone: 'Asia/Colombo' });
+            document.getElementById('time-ny').innerText = new Date().toLocaleTimeString('en-US', { ...opt, timeZone: 'America/New_York' });
+            document.getElementById('time-ln').innerText = new Date().toLocaleTimeString('en-US', { ...opt, timeZone: 'Europe/London' });
         }
         setInterval(updateTime, 1000);
 
-        // Music
-        const song = document.getElementById('audio');
-        const btn = document.getElementById('pBtn');
-        function playMusic() {
-            if (song.paused) { song.play(); btn.innerHTML = '<i class="fas fa-pause"></i>'; }
-            else { song.pause(); btn.innerHTML = '<i class="fas fa-play"></i>'; }
+        // Music Logic
+        const audio = document.getElementById('bg-audio');
+        const btn = document.getElementById('mBtn');
+        function handleMusic() {
+            if (audio.paused) { audio.play(); btn.innerHTML = '<i class="fas fa-pause"></i>'; }
+            else { audio.pause(); btn.innerHTML = '<i class="fas fa-play"></i>'; }
         }
 
-        // Loader
+        // Hide Loader Logic
         window.onload = () => {
             setTimeout(() => {
-                document.getElementById('loader').style.opacity = '0';
-                setTimeout(() => document.getElementById('loader').style.display = 'none', 1000);
-            }, 1500);
+                const loader = document.getElementById('loader');
+                loader.style.opacity = '0';
+                setTimeout(() => loader.style.display = 'none', 800);
+            }, 2500);
         };
     </script>
 </body>
