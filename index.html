@@ -3,313 +3,324 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMPIRE BUG BOT VIP | ELITE INTERFACE</title>
+    <title>EMPIRE BUG BOT | ULTIMATE V10</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-    
+
     <style>
         :root {
-            --neon-purple: #bc13fe;
-            --dark-bg: #030303;
-            --glass: rgba(255, 255, 255, 0.05);
+            --neon: #bc13fe;
+            --dark: #020202;
+            --glass: rgba(255, 255, 255, 0.03);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Orbitron', sans-serif; }
 
         body {
-            background-color: var(--dark-bg);
-            color: #fff;
-            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--dark);
+            color: white;
             overflow-x: hidden;
-            line-height: 1.6;
         }
 
-        /* --- 3D NEON LOADING SCREEN --- */
+        /* --- MATRIX CODE RAIN BACKGROUND --- */
+        #matrix-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+        }
+
+        /* --- 3D LOADING SCREEN --- */
         #loader {
             position: fixed;
             inset: 0;
             background: #000;
+            z-index: 10000;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 10000;
-            transition: opacity 0.8s ease;
+            transition: 1s ease;
         }
-        .cyber-spinner {
-            width: 80px;
-            height: 80px;
+        .load-ring {
+            width: 60px; height: 60px;
             border: 2px solid transparent;
-            border-top: 2px solid var(--neon-purple);
+            border-top: 2px solid var(--neon);
             border-radius: 50%;
-            animation: spin 1s linear infinite;
-            position: relative;
-        }
-        .cyber-spinner::before {
-            content: "";
-            position: absolute;
-            inset: 5px;
-            border: 2px solid transparent;
-            border-bottom: 2px solid #555;
-            border-radius: 50%;
-            animation: spin 2s linear infinite reverse;
+            animation: spin 0.8s linear infinite;
         }
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        /* --- DYNAMIC BACKGROUND --- */
-        .bg-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, #120121 0%, #000 100%);
-            z-index: -1;
-        }
-
-        /* --- MAIN CONTAINER --- */
-        .wrapper {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
+        /* --- WORLD CLOCK BAR --- */
+        .clock-bar {
+            background: rgba(188, 19, 254, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 10px;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
+            justify-content: center;
+            gap: 20px;
+            border-bottom: 1px solid var(--neon);
+            font-size: 0.7rem;
+            letter-spacing: 1px;
         }
+        .clock-item span { color: var(--neon); font-weight: bold; }
 
-        /* --- LOGO (Small & Professional) --- */
-        .logo-area {
-            position: relative;
-            margin-bottom: 40px;
-        }
-        .logo-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 20px;
-            border: 1px solid var(--neon-purple);
-            box-shadow: 0 0 20px rgba(188, 19, 254, 0.3);
-            transform: rotate(-5deg);
-            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .logo-img:hover {
-            transform: rotate(0deg) scale(1.1);
-            box-shadow: 0 0 40px var(--neon-purple);
-        }
-
-        /* --- TITLES --- */
-        h1 {
-            font-family: 'Syncopate', sans-serif;
-            font-size: 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: 8px;
+        /* --- HEADER & LOGO --- */
+        .hero {
+            padding: 60px 20px;
             text-align: center;
-            background: linear-gradient(to right, #fff, var(--neon-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        }
+        .main-logo {
+            width: 110px;
+            height: 110px;
+            border-radius: 25px;
+            border: 2px solid var(--neon);
+            box-shadow: 0 0 40px rgba(188, 19, 254, 0.5);
+            animation: float 4s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); filter: hue-rotate(0deg); }
+            50% { transform: translateY(-20px); filter: hue-rotate(30deg); }
+        }
+
+        h1 {
+            font-size: 2rem;
+            letter-spacing: 10px;
+            text-shadow: 0 0 20px var(--neon);
             margin-bottom: 10px;
         }
-        .subtitle {
-            font-size: 0.9rem;
-            color: #888;
-            letter-spacing: 4px;
-            margin-bottom: 50px;
-            text-transform: uppercase;
-        }
 
-        /* --- ELITE BUTTONS --- */
+        /* --- ACTION BUTTONS --- */
         .btn-grid {
             display: flex;
-            gap: 20px;
             flex-wrap: wrap;
             justify-content: center;
-            margin-bottom: 60px;
+            gap: 15px;
+            margin: 40px 0;
         }
-        .cyber-btn {
-            padding: 14px 28px;
+        .neon-btn {
+            padding: 14px 30px;
             background: var(--glass);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 4px;
-            color: #fff;
+            border: 1px solid var(--neon);
+            color: white;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 0.85rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
             letter-spacing: 2px;
-            transition: 0.3s;
+            transition: 0.4s;
             display: flex;
             align-items: center;
-            gap: 12px;
-            backdrop-filter: blur(5px);
-            position: relative;
-            overflow: hidden;
+            gap: 10px;
         }
-        .cyber-btn::after {
-            content: "";
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            transition: 0.5s;
+        .neon-btn:hover {
+            background: var(--neon);
+            box-shadow: 0 0 30px var(--neon);
+            transform: translateY(-5px) scale(1.05);
         }
-        .cyber-btn:hover {
-            border-color: var(--neon-purple);
-            background: rgba(188, 19, 254, 0.1);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
-        .cyber-btn:hover::after { left: 100%; }
 
-        /* --- CARD SECTION --- */
-        .stats-grid {
+        /* --- SYSTEM FEATURES --- */
+        .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            width: 100%;
-            margin-bottom: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
         }
-        .stat-card {
-            background: linear-gradient(145deg, rgba(15,15,15,1), rgba(5,5,5,1));
-            padding: 40px;
-            border-radius: 2px;
-            border-left: 3px solid var(--neon-purple);
+        .feature-card {
+            background: rgba(10, 10, 10, 0.8);
+            border: 1px solid #111;
+            padding: 25px;
+            border-radius: 10px;
             transition: 0.4s;
+            text-align: left;
         }
-        .stat-card:hover {
-            transform: scale(1.02);
-            background: rgba(188, 19, 254, 0.03);
+        .feature-card:hover {
+            border-color: var(--neon);
+            transform: scale(1.03);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        .stat-card i { color: var(--neon-purple); font-size: 1.5rem; margin-bottom: 20px; }
-        .stat-card h3 { font-size: 0.8rem; letter-spacing: 3px; color: #555; margin-bottom: 5px; }
-        .stat-card p { font-size: 1.2rem; font-weight: bold; letter-spacing: 1px; }
+        .feature-card i { color: var(--neon); font-size: 1.5rem; margin-bottom: 15px; }
 
-        /* --- 3D FLOATING MUSIC PLAYER --- */
-        .music-player {
-            position: fixed;
-            bottom: 40px;
-            right: 40px;
-            background: #000;
-            padding: 15px 25px;
-            border-radius: 100px;
-            border: 1px solid var(--neon-purple);
+        /* --- CHAT GROUP BOX --- */
+        .chat-box {
+            background: linear-gradient(145deg, #100020, #050505);
+            max-width: 450px;
+            margin: 0 auto;
+            border: 1px solid #333;
+            border-radius: 15px;
+            padding: 20px;
             display: flex;
             align-items: center;
             gap: 20px;
-            box-shadow: 0 0 30px rgba(188, 19, 254, 0.4);
-            z-index: 1000;
+            transition: 0.4s;
         }
-        .play-pause-btn {
-            width: 40px;
-            height: 40px;
-            background: var(--neon-purple);
-            border: none;
-            border-radius: 50%;
-            color: #fff;
-            cursor: pointer;
+        .chat-box:hover { border-color: var(--neon); transform: translateY(-5px); }
+        .chat-img { width: 50px; height: 50px; border-radius: 10px; border: 1px solid var(--neon); }
+
+        /* --- MUSIC PLAYER --- */
+        .player-bar {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid var(--neon);
+            padding: 12px 30px;
+            border-radius: 50px;
             display: flex;
-            justify-content: center;
             align-items: center;
+            gap: 20px;
+            z-index: 1000;
+            box-shadow: 0 0 25px var(--neon);
+            width: max-content;
+        }
+        .play-btn {
+            background: var(--neon);
+            border: none;
+            color: white;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
             transition: 0.3s;
         }
-        .play-pause-btn:hover { transform: scale(1.1); box-shadow: 0 0 15px var(--neon-purple); }
 
-        footer {
-            margin-top: auto;
-            font-size: 0.7rem;
-            letter-spacing: 5px;
-            color: #333;
-            text-align: center;
-            padding: 40px 0;
-        }
+        footer { margin-top: 100px; padding-bottom: 120px; opacity: 0.3; font-size: 0.6rem; text-align: center; letter-spacing: 5px; }
 
-        /* --- MOBILE RESPONSIVE --- */
-        @media (max-width: 600px) {
-            h1 { font-size: 1.4rem; letter-spacing: 4px; }
-            .music-player { bottom: 20px; right: 20px; left: 20px; justify-content: center; }
-        }
     </style>
 </head>
 <body>
 
     <div id="loader">
-        <div style="text-align: center;">
-            <div class="cyber-spinner"></div>
-            <p style="margin-top: 20px; letter-spacing: 10px; font-size: 10px; color: var(--neon-purple);">LOADING SYSTEM...</p>
-        </div>
+        <div class="load-ring"></div>
+        <p id="load-text" style="margin-top: 20px; letter-spacing: 5px; font-size: 10px; color: var(--neon);">BOOTING SYSTEM...</p>
     </div>
 
-    <div class="bg-overlay"></div>
+    <canvas id="matrix-bg"></canvas>
 
-    <div class="wrapper">
-        <div class="logo-area">
-            <img src="https://i.ibb.co/ZRzCw1ZF/image.jpg" class="logo-img" alt="Empire Logo">
-        </div>
+    <div class="clock-bar">
+        <div class="clock-item">SL: <span id="clock-sl">00:00:00</span></div>
+        <div class="clock-item">UK: <span id="clock-uk">00:00:00</span></div>
+        <div class="clock-item">USA: <span id="clock-ny">00:00:00</span></div>
+    </div>
 
-        <h1>EMPIRE BUG BOT VIP</h1>
-        <p class="subtitle">Next-Gen Payload Interface</p>
+    <div class="hero">
+        <img src="https://i.ibb.co/ZRzCw1ZF/image.jpg" class="main-logo" alt="Logo">
+        <h1>EMPIRE BUG BOT</h1>
+        <p style="font-size: 0.8rem; color: #888; letter-spacing: 5px;">V10.2 ENHANCED EDITION</p>
 
         <div class="btn-grid">
-            <a href="https://t.me/ebugtelebot" class="cyber-btn"><i class="fab fa-telegram-plane"></i> LAUNCH BOT</a>
-            <a href="https://t.me/empire_chanel_9x" class="cyber-btn"><i class="fas fa-network-wired"></i> NETWORK</a>
-            <a href="https://t.me/empire9x" class="cyber-btn" style="border-color: #fff; background: rgba(255,255,255,0.05);"><i class="fas fa-shield-alt"></i> CONTACT OWNER</a>
+            <a href="https://t.me/ebugtelebot" class="neon-btn"><i class="fab fa-telegram-plane"></i> OPEN TERMINAL</a>
+            <a href="https://t.me/empire9x" class="neon-btn"><i class="fas fa-user-secret"></i> CONTACT ROOT</a>
         </div>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <i class="fas fa-code-branch"></i>
-                <h3>CORE DEVELOPER</h3>
-                <p>DEV MITZII</p>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <i class="fas fa-shield-virus"></i>
+                <h4 style="margin-bottom: 10px;">Security</h4>
+                <p style="font-size: 0.7rem; color: #777;">Advanced encryption and bug-proof payloads for maximum safety.</p>
             </div>
-            <div class="stat-card">
-                <i class="fas fa-crown"></i>
-                <h3>SYSTEM OWNER</h3>
-                <p>EMPIRE 9X</p>
+            <div class="feature-card">
+                <i class="fas fa-microchip"></i>
+                <h4 style="margin-bottom: 10px;">High Performance</h4>
+                <p style="font-size: 0.7rem; color: #777;">Optimized for speed with 0.1ms response time on all networks.</p>
             </div>
-            <div class="stat-card">
-                <i class="fas fa-bolt"></i>
-                <h3>STATUS</h3>
-                <p style="color: #00ff00;">SYSTEM ONLINE</p>
+            <div class="feature-card">
+                <i class="fas fa-sync"></i>
+                <h4 style="margin-bottom: 10px;">24/7 Uptime</h4>
+                <p style="font-size: 0.7rem; color: #777;">Cloud-hosted infrastructure ensuring the service never sleeps.</p>
             </div>
         </div>
 
-        <div style="width: 100%; max-width: 600px; overflow: hidden; border-radius: 4px; border: 1px solid #111;">
-             <img src="https://i.ibb.co/pvgzZrSc/image.jpg" style="width: 100%; opacity: 0.6; filter: grayscale(100%); transition: 0.5s;" onmouseover="this.style.filter='grayscale(0%)'; this.style.opacity='1'" onmouseout="this.style.filter='grayscale(100%)'; this.style.opacity='0.6'">
-        </div>
+        <a href="https://t.me/empire_chanel_9x" style="text-decoration: none; color: white;">
+            <div class="chat-box">
+                <img src="https://i.ibb.co/pvgzZrSc/image.jpg" class="chat-img" alt="Chat Group">
+                <div style="text-align: left;">
+                    <p style="font-size: 1rem; font-weight: bold;">JOIN CHAT HOUSE</p>
+                    <p style="font-size: 0.7rem; color: var(--neon);">@empire_chanel_9x</p>
+                </div>
+                <i class="fas fa-chevron-right" style="margin-left: auto; opacity: 0.5;"></i>
+            </div>
+        </a>
 
         <footer>
-             &copy; 2026 EMPIRE TERMINAL | ENCRYPTED BY MITZII
+            &copy; 2026 EMPIRE NETWORK | ARCHITECT: DEV MITZII | ALL RIGHTS RESERVED
         </footer>
     </div>
 
-    <div class="music-player">
-        <div style="font-size: 10px; font-weight: bold; letter-spacing: 2px;">ELITE PHONK RADIO</div>
-        <audio id="audioTrack" loop>
+    <div class="player-bar">
+        <i class="fas fa-volume-up" style="color: var(--neon);"></i>
+        <div style="text-align: left;">
+            <p style="font-size: 0.7rem; font-weight: bold;">ELITE PHONK MODE</p>
+            <p id="music-status" style="font-size: 0.5rem; color: #555;">STATUS: WAITING</p>
+        </div>
+        <audio id="phonk-audio" loop>
             <source src="https://files.catbox.moe/6q6f4s.mp3" type="audio/mpeg">
         </audio>
-        <button class="play-pause-btn" onclick="togglePlay()" id="playIcon">
+        <button class="play-btn" onclick="toggleMusic()" id="pIcon">
             <i class="fas fa-play"></i>
         </button>
     </div>
 
     <script>
-        // Loader Control
-        window.addEventListener('load', () => {
-            const loader = document.getElementById('loader');
-            setTimeout(() => {
-                loader.style.opacity = '0';
-                setTimeout(() => loader.style.display = 'none', 800);
-            }, 1500);
-        });
+        // Matrix Animation
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        const fontSize = 10;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
 
-        // Music Control (Fixed Audio Play)
-        const audio = document.getElementById('audioTrack');
-        const btn = document.getElementById('playIcon');
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#bc13fe";
+            ctx.font = fontSize + "px monospace";
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters.charAt(Math.floor(Math.random() * letters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 50);
 
-        function togglePlay() {
+        // Clocks
+        function updateClocks() {
+            const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+            document.getElementById('clock-sl').innerText = new Date().toLocaleString('en-US', { ...options, timeZone: 'Asia/Colombo' });
+            document.getElementById('clock-uk').innerText = new Date().toLocaleString('en-US', { ...options, timeZone: 'Europe/London' });
+            document.getElementById('clock-ny').innerText = new Date().toLocaleString('en-US', { ...options, timeZone: 'America/New_York' });
+        }
+        setInterval(updateClocks, 1000);
+
+        // Music
+        const audio = document.getElementById('phonk-audio');
+        const btn = document.getElementById('pIcon');
+        const status = document.getElementById('music-status');
+        function toggleMusic() {
             if (audio.paused) {
-                audio.play().catch(e => console.log("Audio play failed: ", e));
+                audio.play();
                 btn.innerHTML = '<i class="fas fa-pause"></i>';
+                status.innerText = "STATUS: PLAYING";
             } else {
                 audio.pause();
                 btn.innerHTML = '<i class="fas fa-play"></i>';
+                status.innerText = "STATUS: PAUSED";
             }
         }
+
+        // Loader
+        window.onload = () => {
+            setTimeout(() => {
+                document.getElementById('loader').style.opacity = '0';
+                setTimeout(() => document.getElementById('loader').style.display = 'none', 1000);
+            }, 2000);
+        };
     </script>
 </body>
 </html>
