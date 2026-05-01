@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empire Bug Bot VIP | Official</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+    <style>
+        :root {
+            --main-color: #8a2be2;
+            --bg-color: #050505;
+            --text-color: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        /* Moving Star Background */
+        .stars-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png');
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Bot Profile Image */
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 4px solid var(--main-color);
+            box-shadow: 0 0 25px var(--main-color);
+            margin-bottom: 25px;
+            transition: 0.5s;
+        }
+
+        .profile-img:hover {
+            transform: rotate(360deg) scale(1.1);
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            letter-spacing: 4px;
+            color: var(--main-color);
+            text-shadow: 0 0 15px var(--main-color);
+        }
+
+        .sub-text {
+            font-size: 1.2rem;
+            color: #888;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        /* Buttons */
+        .btn-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .action-btn {
+            padding: 12px 30px;
+            border: 2px solid var(--main-color);
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: 0.4s;
+            background: rgba(138, 43, 226, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .action-btn:hover {
+            background: var(--main-color);
+            box-shadow: 0 0 25px var(--main-color);
+            transform: translateY(-5px);
+        }
+
+        /* Info Cards */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            padding: 25px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        .info-card:hover {
+            border-color: var(--main-color);
+            background: rgba(138, 43, 226, 0.05);
+        }
+
+        .info-card i {
+            font-size: 2rem;
+            color: var(--main-color);
+            margin-bottom: 15px;
+        }
+
+        /* Fixed Phonk Player */
+        .music-bar {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 12px 30px;
+            border-radius: 50px;
+            border: 2px solid var(--main-color);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
+            z-index: 999;
+        }
+
+        .fa-compact-disc {
+            color: var(--main-color);
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        .play-btn {
+            background: var(--main-color);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        footer {
+            margin-top: 80px;
+            opacity: 0.4;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stars-bg"></div>
+
+    <div class="music-bar">
+        <i class="fas fa-compact-disc"></i>
+        <span style="font-size: 0.8rem; font-weight: bold;">PHONK RADIO ON</span>
+        <audio id="mainAudio" loop>
+            <source src="https://files.catbox.moe/2s4o6x.mp3" type="audio/mpeg">
+        </audio>
+        <button class="play-btn" onclick="toggleAudio()" id="ctrlIcon">
+            <i class="fas fa-play"></i>
+        </button>
+    </div>
+
+    <div class="container">
+        <img src="https://ibb.co/ZRzCw1ZF" alt="Empire Logo" class="profile-img">
+        <h1>EMPIRE BUG BOT VIP</h1>
+        <p class="sub-text">High-Speed Bug & Payload Service</p>
+
+        <div class="btn-wrapper">
+            <a href="https://t.me/ebugtelebot" class="action-btn"><i class="fab fa-telegram-plane"></i> Start Bot</a>
+            <a href="https://t.me/empire_chanel_9x" class="action-btn"><i class="fas fa-users"></i> Chat Group</a>
+            <a href="https://t.me/empire9x" class="action-btn"><i class="fas fa-user-shield"></i> Owner</a>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <i class="fas fa-terminal"></i>
+                <h3>Developer</h3>
+                <p style="color: var(--main-color); font-weight: bold; font-size: 1.2rem;">DEV MITZII</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-crown"></i>
+                <h3>Main Owner</h3>
+                <p style="font-size: 1.2rem;">EMPIRE 9X</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-bolt"></i>
+                <h3>Uptime</h3>
+                <p>24/7 ONLINE SERVICE</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <p style="margin-bottom: 15px; opacity: 0.6;">JOIN OUR COMMUNITY</p>
+            <a href="https://t.me/empire_chanel_9x">
+                <img src="https://ibb.co/pvgzZrSc" style="width: 100%; max-width: 450px; border-radius: 15px; border: 1px solid #333;">
+            </a>
+        </div>
+
+        <footer>
+            <p>DESIGNED BY DEV MITZII | © 2026 EMPIRE NETWORK</p>
+        </footer>
+    </div>
+
+    <script>
+        var mySong = document.getElementById("mainAudio");
+        var myBtn = document.getElementById("ctrlIcon");
+
+        function toggleAudio() {
+            if (mySong.paused) {
+                mySong.play();
+                myBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                mySong.pause();
+                myBtn.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        }
+
+        // Play alert for mobile
+        window.addEventListener('click', function() {
+            // Optional auto-start logic
+        }, { once: true });
+    </script>
+
+</body>
+</html>
